@@ -6,18 +6,40 @@ output: github_document
 library(moderndive)
 data("early_january_weather")
 
-# Get the names of the variables in the dataset
+# Problem 1
+# Names of the variables
 variables <- names(early_january_weather)
 
-# Get the dimensions of the dataset (number of rows and columns)
+# Number of rows and columns
 num_rows <- nrow(early_january_weather)
 num_cols <- ncol(early_january_weather)
 
-# Calculate the mean temperature
+# Mean temperature
 mean_temp <- mean(early_january_weather$temp, na.rm = TRUE)
 
-# Display the results
+# Results
 variables
 num_rows
 num_cols
 mean_temp
+
+# Plotting library
+library(ggplot2)
+
+# Scatterplot
+scatterplot <- ggplot(early_january_weather, aes(x = time_hour, y = temp, color = humid)) +
+  geom_point() +
+  labs(
+    x = "Time of Observation",
+    y = "Temperature",
+    title = "Scatterplot of Temperature vs. Time with Humidity Color",
+    subtitle = "Early January Weather Data"
+  )
+
+# Graph
+scatterplot
+
+# Export Graph
+ggsave("temperature_vs_time_scatterplot.png", plot = scatterplot, width = 8, height = 6)
+
+
